@@ -6,6 +6,7 @@
     <meta name="viewport" content="width= , initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>东尼大木VS周杰伦</title>
+    <script type="text/javascript" src="https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js"></script>
     <style>
         *::-webkit-scrollbar {
             display: none;
@@ -44,11 +45,11 @@
     </style>
 </head>
 <body>
-    <div class="dad">
+    <div id="iframe1" class="dad">
         <div class="tony">
             <section>
                 <ol>
-                    <li><a href="#tonny">个人简介</a></li>
+                    <li><a id="hide" href="#tonny">个人简介</a></li>
                     <li><a href="#awards">成就和荣誉</a></li>
                     <li><a href="#events">重要事件</a></li>
                     <li><a href="#works">主要作品</a></li>
@@ -154,10 +155,47 @@
 
         </div>
         <div class="jay">
-            <iframe src="index2.html" frameborder="0" scrolling="yes" id="external-frame" onload="setIframeHeight(this)"></iframe>
+            <iframe src="index2.html" frameborder="0" scrolling="yes" id="iframe2" onload="setIframeHeight(this)"></iframe>
         </div>
-    </div>
+    </div id="iframe1">
 
 </body>
+<script>
+    $(function() {
+        var iframe1Window,iframe2Window,clear;
+        $('iframe').on('load', function() {
+            var contentWindow = $(this)[0].contentWindow,
+                _id = $(this).attr('id');
+            if(_id == 'iframe1' && !iframe1Window) {
+                iframe1Window = contentWindow;
+            }
+            if(_id == 'iframe2' && !iframe2Window) {
+                iframe2Window = contentWindow;
+            }
 
+            contentWindow.onscroll = function(e) {
+                var scrollTop = $(contentWindow).scrollTop();
+
+                if(clear) {
+                    clear = '';
+                    return false;
+                }
+                console.log(_id);
+
+                if(_id == 'iframe1') {
+                    if(iframe2Window) {
+                        $(iframe2Window).scrollTop(scrollTop);
+                        clear = true;
+                    }
+                } else if(_id == 'iframe2') {
+                    if(iframe1Window) {
+                        $(iframe1Window).scrollTop(scrollTop);
+                        clear = true;
+                    }
+                }
+            };
+
+        })
+    })
+</script>
 </html>
