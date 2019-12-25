@@ -3,10 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width= , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,
+    maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>东尼大木VS周杰伦</title>
-    <script type="text/javascript" src="https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.js"></script>
+    <link rel="stylesheet" href="reset.css">
     <style>
         *::-webkit-scrollbar {
             display: none;
@@ -42,14 +44,17 @@
             float: right;
             overflow: hidden
         }
-        img{
+        
+        img {
             max-width: 100%;
         }
     </style>
 </head>
-<body>
-    <div id="iframe1" class="dad">
-        <div class="tony">
+
+<body name="iframe" id="iframe" width="100%" scrolling="no" frameborder="0">
+    <!-- 实现iframe同步滚动 -->
+    <div class="dad">
+        <div id="iframe1" class="tony">
             <section>
                 <ol>
                     <li><a id="hide" href="#tonny">个人简介</a></li>
@@ -116,7 +121,7 @@
                         </tr>
                         <tr>
                             <td>2012年</td>
-                            <td> 
+                            <td>
                                 《等你下课》光头mv</td>
                         </tr>
                         </tr>
@@ -146,59 +151,60 @@
             </section>
             <section>
                 <h2 id="life">生平</h2>
-                <p>欣赏的合作对手 东尼大木在中国大陆的媒体访问中，提过他一般下班后就会忘记对手。但他曾在访问中提过最欣赏爱田由。在另一个访问中，他说最爱的对手是波多野结衣。 
-                <p>
-                    样貌被二次创作 由于台湾歌手周杰伦的长相和东尼大木年轻光头时期相像，所以东尼大木在中国大陆与台湾经常被恶搞。大多数恶搞方式是把东尼大木演出的电影配上周杰伦演唱的音乐制作为“MV”。部分恶搞视频制作精良，贴合歌词意境，在新闻界也引起了巨大轰动。
-                </p>同年在中国大陆参与了暴走漫画旗下的暴走大事件第二季09集的拍摄。
-                <p>
-                    因为他学生时期玩过乐团，后来在华人圈因为与周杰伦的相似出名后，意外使他朝向歌手方向发展，成立自己的乐团TonyBand担任主唱，他也会亲自表演周杰伦的作品。
-                </p>
+                <p>欣赏的合作对手 东尼大木在中国大陆的媒体访问中，提过他一般下班后就会忘记对手。但他曾在访问中提过最欣赏爱田由。在另一个访问中，他说最爱的对手是波多野结衣。
+                    <p>
+                        样貌被二次创作 由于台湾歌手周杰伦的长相和东尼大木年轻光头时期相像，所以东尼大木在中国大陆与台湾经常被恶搞。大多数恶搞方式是把东尼大木演出的电影配上周杰伦演唱的音乐制作为“MV”。部分恶搞视频制作精良，贴合歌词意境，在新闻界也引起了巨大轰动。
+                    </p>同年在中国大陆参与了暴走漫画旗下的暴走大事件第二季09集的拍摄。
+                    <p>
+                        因为他学生时期玩过乐团，后来在华人圈因为与周杰伦的相似出名后，意外使他朝向歌手方向发展，成立自己的乐团TonyBand担任主唱，他也会亲自表演周杰伦的作品。
+                    </p>
                 </p>
             </section>
 
         </div>
-        <div class="jay">
-            <iframe src="index2.html" frameborder="0" scrolling="yes" id="iframe2" onload="setIframeHeight(this)"></iframe>
+        <div id="iframe2" class="jay">
+            <iframe src="index2.html" frameborder="0" scrolling="yes" onload="setIframeHeight(this)" style=" background-color:#aaa;"></iframe>
         </div>
-    </div id="iframe1">
+    </div>
 
 </body>
 <script>
     $(function() {
-        var iframe1Window,iframe2Window,clear;
-        $('iframe').on('load', function() {
-            var contentWindow = $(this)[0].contentWindow,
-                _id = $(this).attr('id');
-            if(_id == 'iframe1' && !iframe1Window) {
-                iframe1Window = contentWindow;
-            }
-            if(_id == 'iframe2' && !iframe2Window) {
-                iframe2Window = contentWindow;
-            }
-
-            contentWindow.onscroll = function(e) {
-                var scrollTop = $(contentWindow).scrollTop();
-
-                if(clear) {
-                    clear = '';
-                    return false;
+            var iframe1Window, iframe2Window, clear;
+            $('#iframe1,#iframe2').on('load', function() {
+                var contentWindow = $(this)[0].contentWindow,
+                    _id = $(this).attr('id');
+                if (_id == 'iframe1' && !iframe1Window) {
+                    iframe1Window = contentWindow;
                 }
-                console.log(_id);
-
-                if(_id == 'iframe1') {
-                    if(iframe2Window) {
-                        $(iframe2Window).scrollTop(scrollTop);
-                        clear = true;
-                    }
-                } else if(_id == 'iframe2') {
-                    if(iframe1Window) {
-                        $(iframe1Window).scrollTop(scrollTop);
-                        clear = true;
-                    }
+                if (_id == 'iframe2' && !iframe2Window) {
+                    iframe2Window = contentWindow;
                 }
-            };
-
+                // alert("stop here");
+                contentWindow.onscroll = function(e) {
+                    alert("stop here");
+                    var scrollTop = $(contentWindow).scrollTop();
+                    if (clear) {
+                        clear = '';
+                        return false;
+                    }
+                    if (_id == 'iframe1') {
+                        if (iframe2Window) {
+                            $(iframe2Window).scrollTop(scrollTop);
+                            clear = true;
+                        }
+                    } else if (_id == 'iframe2') {
+                        if (iframe1Window) {
+                            $(iframe1Window).scrollTop(scrollTop);
+                            clear = true;
+                        }
+                    }
+                };
+            })
         })
-    })
+        // $(function() {
+        // alert("stpo here");
+        // })
 </script>
+
 </html>
