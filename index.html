@@ -3,15 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,
-    maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>东尼大木VS周杰伦</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.js"></script>
     <link rel="stylesheet" href="reset.css">
     <style>
         *::-webkit-scrollbar {
-            display: none;
+            display: none !important;
         }
         
         .dad {
@@ -51,11 +50,11 @@
     </style>
 </head>
 
-<body οnlοad="parent.document.all.iframe.style.height=document.body.scrollHeight;" topmargin="0" leftmargin="0" rightmargin="0" bottomMargin="0">
+<body οnlοad="parent.document.all.iframe.style.height=document.body.scrollHeight;" topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0">
     <!-- 实现iframe同步滚动 -->
     <div class="dad">
         <div id="iframe1" class="tony">
-            <section>
+            <nav>
                 <ol>
                     <li><a id="hide" href="#tonny">个人简介</a></li>
                     <li><a href="#awards">成就和荣誉</a></li>
@@ -64,7 +63,7 @@
                     <li><a href="#pictures">生活照</a></li>
                     <li><a href="#life">生平</a></li>
                 </ol>
-            </section>
+            </nav>
 
             <section>
 
@@ -166,8 +165,8 @@
             <iframe src="index2.html" frameborder="0" scrolling="yes" onload="setIframeHeight(this)" style=" background-color:#aaa;"></iframe>
         </div>
     </div>
-
 </body>
+
 <script>
     $(function() {
             var iframe1Window, iframe2Window, clear;
@@ -203,7 +202,7 @@
             })
         })
         // $(function() {
-        // alert("stpo here");
+        // alert("stop here");
         // })
 </script>
 
